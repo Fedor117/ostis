@@ -32,7 +32,7 @@ clone_project()
 stage "Clone projects"
 
 clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine master
-clone_project https://github.com/Ivan-Zhukau/sc-web.git sc-web master
+clone_project https://github.com/Fedor117/sc-web.git sc-web master
 clone_project https://github.com/ShunkevichDV/ims.ostis.kb.git ims.ostis.kb master
 
 stage "Prepare projects"
@@ -54,11 +54,17 @@ cd -
 
 prepare "sc-web"
 sudo apt-get install python-dev # required for numpy module
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install npm
+sudo npm install -g grunt-cli
 cd ../sc-web/scripts
 ./install_deps_ubuntu.sh
-./prepare_js.sh
-python build_components.py -i -a
-cd -
+cd ..
+sudo npm install
+grunt concat
+grunt copy
+cd ../scripts/
 echo -en $green"Copy server.conf"$rst"\n"
 cp -f ../config/server.conf ../sc-web/server/
 
