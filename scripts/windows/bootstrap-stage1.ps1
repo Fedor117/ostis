@@ -24,6 +24,7 @@ $env:Path = ($p -Split ';' | select -Unique) -join ";"
 python -m pip install tornado sqlalchemy redis==2.9
 
 # install custom-built numpy module
+python -m pip install --upgrade pip
 python -m pip install .\3rd-party\numpy-1.9.3+vanilla-cp27-none-win_amd64.whl
 
 # software installation finished, we can drop admin privileges now

@@ -25,7 +25,7 @@ pushd ..\..
 
 # clone latest sources from github
 git clone https://github.com/deniskoronchik/sc-machine
-git clone https://github.com/deniskoronchik/sc-web
+git clone https://github.com/Fedor117/sc-web
 git clone https://github.com/deniskoronchik/ims.ostis.kb
 mkdir kb.bin
 
@@ -53,8 +53,12 @@ del -Recurse ims.ostis.kb_copy\ui\menu
 # }
 
 # prepare GUI
-pushd sc-web\scripts
-.\client.bat
+pushd sc-web
+npm install grunt-cli -g
+npm install
+grunt concat
+grunt copy
+# .\client.bat
 popd
 
 copy config\server.conf sc-web\server
